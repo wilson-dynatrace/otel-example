@@ -1,1 +1,53 @@
 Simple demo application setup for PHP/Swoole monitoring using OpenTelemetry
+
+Get Dynatrace OpenTelemetry Collector via
+
+docker pull ghcr.io/dynatrace/dynatrace-otel-collector/dynatrace-otel-collector:0.38.0
+
+Docker compose example:
+services:
+  collector:
+    image: ghcr.io/dynatrace/dynatrace-otel-collector/dynatrace-otel-collector:0.32.0
+    command: ["--config=/etc/otelcol/otel-collector-config.yml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol/otel-collector-config.yaml
+    ports:
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+    environment:
+      - DT_ENDPOINT
+      - DT_API_TOKEN
+
+Collector configuration exanple:
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  cumulativetodelta:
+
+exporters:
+  otlphttp/dynatrace:
+    endpoint: "${env:DT_ENDPOINT}"
+    headers:
+      Authorization: "Api-Token ${env:DT_API_TOKEN}"
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlphttp/dynatrace]
+    metrics:
+      receivers: [otlp]
+      processors: [cumulativetodelta]
+      exporters: [otlphttp/dynatrace]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlphttp/dynatrace]
