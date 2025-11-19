@@ -1,0 +1,19 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: java-instrumentation
+  namespace: tomcat-ps   # same namespace as your Tomcat pods
+spec:
+  java:
+    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-java:latest   # always latest official agent
+    env:
+      - name: OTEL_TRACES_EXPORTER
+        value: otlp
+      - name: OTEL_METRICS_EXPORTER
+        value: otlp
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: http://otel-collector.default.svc.cluster.local:4318   # or 4317 for gRPC
+      - name: OTEL_SERVICE_NAME
+        value: my-tomcatappsvc   # optional, overrides resource detection
+      - name: OTEL_RESOURCE_ATTRIBUTES
+        value: deployment.environment=production,k8s.namespace.name=default
