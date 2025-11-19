@@ -46,5 +46,6 @@
 		"DT_API_TOKEN": {
 			"description": "Dynatrace API token with these permissions: `logs.ingest`, `events.ingest`, `metrics.ingest`, `openTelemetry.ingest`"
 	 	}
-    
+	}
+	
 }
