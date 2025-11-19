@@ -16,3 +16,27 @@
 #    pipelines:
 #      traces:
 #        exporters: [spanmetrics, otlphttp/example]
+exporters: 
+  # otlp/http exporter to Dynatrace.  
+  otlphttp/dynatrace:  
+    endpoint: "${DT_ENV_URL}"  
+    headers:  
+      Authorization: "Api-Token ${DT_API_TOKEN}"  
+ 
+processors:  
+  cumulativetodelta:  
+  
+service:  
+  pipelines:  
+    traces/dynatrace:  
+      receivers: [otlp]  
+      processors: [batch]  
+      exporters: [otlphttp/dynatrace]  
+    metrics/dynatrace:  
+      receivers: [otlp, spanmetrics]  
+      processors: [batch, cumulativetodelta]  
+      exporters: [otlphttp/dynatrace]  
+    logs/dynatrace:  
+      receivers: [otlp]  
+      processors: [batch]  
+      exporters: [otlphttp/dynatrace]
