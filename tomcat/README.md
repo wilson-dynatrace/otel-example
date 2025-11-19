@@ -12,3 +12,9 @@ kubectl apply -f tomcat.yml
     kubectl -n tomcat-ps exec tomcatapp -- ls webapps -la
     cat /proc/meminfo
     kubectl -n tomcat-ps delete pod <podname>
+
+## OpenTelemetry Related commands
+
+    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.19.1/cert-manager.yaml
+    kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
+    kubectl wait --for=condition=available deployment/opentelemetry-operator-controller-manager -n opentelemetry-operator-system
