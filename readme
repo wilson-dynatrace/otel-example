@@ -51,3 +51,16 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [otlphttp/dynatrace]
+
+---
+Preparation
+
+1. In Dynatrace, create an access token with the Ingest scopes.
+2. Setup the environment
+
+export DT_ENDPOINT=https://{your-environment-id}.live.dynatrace.com/api/v2/otlp
+export DT_API_TOKEN={your-api-token}
+export NAME=k8s-otel-o11y
+
+3. Setup Dynatrace OpenTelemetry Collector (https://github.com/Dynatrace/dynatrace-otel-collector)
+Refer to https://docs.dynatrace.com/docs/ingest-from/opentelemetry/collector/deployment for setup details.
