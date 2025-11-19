@@ -11,4 +11,4 @@ kubectl apply -f tomcat.yml
     kubectl -n tomcat-ps logs <podname>
     kubectl -n tomcat-ps exec tomcatapp -- ls webapps -la
     cat /proc/meminfo
-    kubectl delete pod <podname>
+    kubectl -n tomcat-ps delete pod <podname>
