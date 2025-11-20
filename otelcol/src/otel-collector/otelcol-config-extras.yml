@@ -21,8 +21,7 @@
 ## The configuration also includes an optional span metrics connector, which generates
 ## Request, Error, and Duration (R.E.D.) metrics from span data. 
 ##
-# exporters: 
-  # otlp/http exporter to Dynatrace.  
+# exporters:   # otlp/http exporter to Dynatrace.  
 #   otlphttp/dynatrace:  
 #     endpoint: "${DT_ENDPOINT}"  
 #     headers:  
@@ -44,4 +43,4 @@
 #     logs/dynatrace:  
 #       receivers: [otlp]  
 #       processors: [batch]  
-      exporters: [otlphttp/dynatrace]
+#      exporters: [otlphttp/dynatrace]
