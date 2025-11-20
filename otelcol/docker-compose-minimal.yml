@@ -34,11 +34,6 @@ services:
     ports:
       - "${OTEL_COLLECTOR_PORT_GRPC}"
       - "${OTEL_COLLECTOR_PORT_HTTP}"
-    depends_on:
-      jaeger:
-        condition: service_started
-      opensearch:
-        condition: service_healthy
     logging: *logging
     environment:
       - FRONTEND_PROXY_ADDR
@@ -48,7 +43,6 @@ services:
       - OTEL_COLLECTOR_HOST
       - OTEL_COLLECTOR_PORT_GRPC
       - OTEL_COLLECTOR_PORT_HTTP
-      - POSTGRES_HOST
-      - POSTGRES_PORT
-      - POSTGRES_PASSWORD
       - GOMEMLIMIT=160MiB
+#      - DT_ENDPOINT 
+#      - DT_API_TOKEN
