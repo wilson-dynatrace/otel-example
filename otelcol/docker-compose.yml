@@ -10,7 +10,7 @@ x-default-logging: &logging
 
 networks:
   default:
-    name: opentelemetry-demo
+    name: opentelemetry
     driver: bridge
 
 services:
@@ -94,9 +94,6 @@ services:
       - OTEL_COLLECTOR_HOST
       - OTEL_COLLECTOR_PORT_GRPC
       - OTEL_COLLECTOR_PORT_HTTP
-      - POSTGRES_HOST
-      - POSTGRES_PORT
-      - POSTGRES_PASSWORD
       - GOMEMLIMIT=160MiB
 
   # Prometheus
