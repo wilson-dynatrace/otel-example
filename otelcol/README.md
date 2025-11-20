@@ -9,3 +9,9 @@
     export DT_ENDPOINT=https://{your-env-id}.live.dynatrace.com/api/v2/otlp 
     export DT_API_TOKEN=dt0c01.MY_SECRET_TOKEN
     export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
+
+## Useful docker commands for OpenTelemetry collector
+
+    docker-compose -f docker-compose.yml up -d
+    docker-compose -f docker-compose.yml stop
+    docker-compose -f docker-compose.yml down
