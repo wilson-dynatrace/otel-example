@@ -3,7 +3,7 @@ services:
     image: tomcat:latest
     ports:
       - 8090:8080
-    volumes:
+#    volumes:
 #      - ../otel/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar
     command: /bin/bash -c "mv /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/ && rm -r /usr/local/tomcat/webapps.dist && catalina.sh run"
 #    environment:
