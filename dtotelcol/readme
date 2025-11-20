@@ -1,1 +1,4 @@
 // Dynatrace OpenTelemetry Collector Readme
+
+
+docker run -v $(pwd):$(pwd) -w $(pwd) ghcr.io/dynatrace/dynatrace-otel-collector/dynatrace-otel-collector:0.39.0 validate --config=otel-collector-config.yml
