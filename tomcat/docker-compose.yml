@@ -2,7 +2,7 @@ services:
   tomcat:
     image: tomcat:latest
     ports:
-      - 8080:8080
+      - 80:8080
     volumes:
       - ./webapps/sample.war:/usr/local/tomcat/webapps/sample.war:ro
 #      - ./otel/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar
