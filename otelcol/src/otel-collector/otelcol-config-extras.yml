@@ -16,3 +16,32 @@
 #    pipelines:
 #      traces:
 #        exporters: [spanmetrics, otlphttp/example]
+
+## This configuration will export traces, metrics, and logs to Dynatrace using OTLP.
+## The configuration also includes an optional span metrics connector, which generates
+## Request, Error, and Duration (R.E.D.) metrics from span data. 
+##
+# exporters: 
+  # otlp/http exporter to Dynatrace.  
+#   otlphttp/dynatrace:  
+#     endpoint: "${DT_ENDPOINT}"  
+#     headers:  
+#       Authorization: "Api-Token ${DT_API_TOKEN}"  
+#
+# processors:  
+#   cumulativetodelta:  
+  
+# service:  
+#   pipelines:  
+#     traces/dynatrace:  
+#       receivers: [otlp]  
+#       processors: [batch]  
+#       exporters: [otlphttp/dynatrace]  
+#     metrics/dynatrace:  
+#       receivers: [otlp, spanmetrics]  
+#       processors: [batch, cumulativetodelta]  
+#       exporters: [otlphttp/dynatrace]  
+#     logs/dynatrace:  
+#       receivers: [otlp]  
+#       processors: [batch]  
+      exporters: [otlphttp/dynatrace]
