@@ -31,7 +31,7 @@ services:
     restart: unless-stopped
     ports:
       - "${JAEGER_UI_PORT}:${JAEGER_UI_PORT}"
-      - "${JAEGER_GRPC_PORT}"
+      - "${JAEGER_GRPC_PORT}:${JAEGER_GRPC_PORT}"
     environment:
       - JAEGER_HOST
       - JAEGER_GRPC_PORT
@@ -78,8 +78,8 @@ services:
       - ${OTEL_COLLECTOR_CONFIG}:/etc/otelcol-config.yml
       - ${OTEL_COLLECTOR_CONFIG_EXTRAS}:/etc/otelcol-config-extras.yml
     ports:
-      - "${OTEL_COLLECTOR_PORT_GRPC}"
-      - "${OTEL_COLLECTOR_PORT_HTTP}"
+      - "${OTEL_COLLECTOR_PORT_GRPC}:${OTEL_COLLECTOR_PORT_GRPC}"
+      - "${OTEL_COLLECTOR_PORT_HTTP}:${OTEL_COLLECTOR_PORT_HTTP}"
     depends_on:
       jaeger:
         condition: service_started
@@ -152,7 +152,7 @@ services:
         soft: 65536
         hard: 65536
     ports:
-      - "9200"
+      - "${OPENSEARCH_PORT}:${OPENSEARCH_PORT}"
     healthcheck:
       test: curl -s http://localhost:9200/_cluster/health | grep -E '"status":"(green|yellow)"'
       start_period: 10s
