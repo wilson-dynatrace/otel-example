@@ -3,6 +3,7 @@
 echo "[post-create] start" >> ~/status
 
 # Setup Kind
-kind create cluster --config .devcontainer/kind-cluster.yml --wait 300s
+# Note it is using port 4318, will have conflict with otel-collector
+# kind create cluster --config .devcontainer/kind-cluster.yml --wait 300s
 
 echo "[post-create] complete" >> ~/status
