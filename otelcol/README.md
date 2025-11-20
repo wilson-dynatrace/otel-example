@@ -20,3 +20,8 @@
 ## Miscellaneous commands
 
     source ./setenv.sh
+
+## Assigned port
+
+    Prometheus -> 9090
+    
