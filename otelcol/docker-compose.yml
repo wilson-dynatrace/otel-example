@@ -54,6 +54,7 @@ services:
     restart: unless-stopped
     environment:
       - "GF_INSTALL_PLUGINS=grafana-opensearch-datasource"
+      - "GF_SERVER_HTTP_ADDR=0.0.0.0"
     volumes:
       - ./src/grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./src/grafana/provisioning/:/etc/grafana/provisioning/
