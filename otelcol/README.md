@@ -24,4 +24,5 @@
 ## Assigned port
 
     Prometheus -> 9090
+    Jaeger UI -> 16686
     
