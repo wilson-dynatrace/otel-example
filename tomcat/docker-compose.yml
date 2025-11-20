@@ -5,7 +5,7 @@ services:
       - 80:8080
     volumes:
       - ./webapps/sample.war:/usr/local/tomcat/webapps/sample.war:ro
-#      - ./otel/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar
+#      - ../otel/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar
 #    environment:
 #      - CATALINA_OPTS=-javaagent:/otel/opentelemetry-javaagent.jar
 #      - OTEL_SERVICE_NAME=tomcat
