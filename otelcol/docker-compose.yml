@@ -30,7 +30,7 @@ services:
           memory: 1200M
     restart: unless-stopped
     ports:
-      - "${JAEGER_UI_PORT}"
+      - "${JAEGER_UI_PORT}:${JAEGER_UI_PORT}"
       - "${JAEGER_GRPC_PORT}"
     environment:
       - JAEGER_HOST
@@ -58,7 +58,7 @@ services:
       - ./src/grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./src/grafana/provisioning/:/etc/grafana/provisioning/
     ports:
-      - "${GRAFANA_PORT}"
+      - "${GRAFANA_PORT}:${GRAFANA_PORT}"
     logging: *logging
 
   # OpenTelemetry Collector
