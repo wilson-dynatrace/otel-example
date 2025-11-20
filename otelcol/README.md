@@ -16,3 +16,7 @@
     docker-compose -f docker-compose.yml stop
     docker-compose -f docker-compose.yml down
     docker ps
+
+## Miscellaneous commands
+
+    source ./setenv.sh
