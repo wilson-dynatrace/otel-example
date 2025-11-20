@@ -4,7 +4,7 @@
 
     docker-compose -f docker-compose.yml up
 
-## Start the tomcat application
+## Start the tomcat application via kubectl
 
     kubectl apply -f tomcat.yml
 
