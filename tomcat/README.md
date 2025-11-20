@@ -1,7 +1,12 @@
 # Sample Tomcat application
 
+## Start the tomcat application via docker
+
+    docker-compose -f docker-compose.yml up
+
 ## Start the tomcat application
-kubectl apply -f tomcat.yml
+
+    kubectl apply -f tomcat.yml
 
 ## Useful kubectl commands for tomcat app
 
