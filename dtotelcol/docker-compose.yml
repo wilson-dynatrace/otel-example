@@ -3,7 +3,7 @@ services:
     image: ghcr.io/dynatrace/dynatrace-otel-collector/dynatrace-otel-collector:0.30.0
     command: ["--config=/etc/otelcol/otel-collector-config.yml"]
     volumes:
-      - ./otel-collector-config.yml:/etc/otelcol/otel-collector-config.yml
+      - ./otel-collector-config.yml:/etc/otelcol/otel-collector-config.yaml
     ports:
       - "4317:4317"   # OTLP gRPC
       - "4318:4318"   # OTLP HTTP
