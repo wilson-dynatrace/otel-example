@@ -11,4 +11,4 @@ services:
       - opentelemetry
     ports:
       - 8090
-    command: ["curl", "http://localhost:8080"]
+    command: ["curl", "http://localhost:8090"]
