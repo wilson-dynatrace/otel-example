@@ -9,7 +9,7 @@ x-default-logging: &logging
     tag: "{{.Name}}"
 
 networks:
-  default:
+  shared-net:
     name: opentelemetry
     driver: bridge
 
@@ -67,7 +67,7 @@ services:
     image: ${COLLECTOR_CONTRIB_IMAGE}
     container_name: otel-collector
     networks:
-      - default
+      - shared-net
     deploy:
       resources:
         limits:
@@ -165,5 +165,5 @@ services:
     logging: *logging
 
   networks:
-    default:
+    shared-net:
       external: true
