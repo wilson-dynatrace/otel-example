@@ -6,6 +6,6 @@ echo "[post-create] start" >> ~/status
 # Note it is using port 4318, will have conflict with otel-collector
 # kind create cluster --config .devcontainer/kind-cluster.yml --wait 300s
 
-docker network create default
+docker network create opentelemetry
 
 echo "[post-create] complete" >> ~/status
