@@ -2,13 +2,13 @@ networks:
   opentelemetry:
     name: opentelemetry
     driver: bridge
-    external: true
+#    external: true
 
 services:
   tomcat-test:
     image: curlimages/curl
     networks:
       - opentelemetry
-    ports:
-      - 8090
-    command: ["curl", "http://localhost:8090"]
+#    ports:
+#      - 8090
+    command: ["curl", "http://tomcat:8080"]
