@@ -1,3 +1,9 @@
+networks:
+  default:
+    name: opentelemetry
+    driver: bridge
+    external: true
+
 services:
   tomcat:
     image: tomcat:latest
@@ -15,7 +21,3 @@ services:
 #    volumes:
 #      - ../otel/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar
     command: /bin/bash -c "mv /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/ && rm -r /usr/local/tomcat/webapps.dist && catalina.sh run"
-    
-networks:
-  shared-net:
-    external: true
