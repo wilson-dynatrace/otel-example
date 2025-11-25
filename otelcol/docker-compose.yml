@@ -66,6 +66,8 @@ services:
   otel-collector:
     image: ${COLLECTOR_CONTRIB_IMAGE}
     container_name: otel-collector
+    networks:
+      - default
     deploy:
       resources:
         limits:
@@ -161,3 +163,7 @@ services:
       timeout: 10s
       retries: 10
     logging: *logging
+
+  networks:
+    default:
+      external: true
