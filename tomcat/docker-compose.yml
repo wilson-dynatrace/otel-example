@@ -13,8 +13,8 @@ services:
       - 8090:8080
 #      - ${OTEL_COLLECTOR_PORT_GRPC}
 #      - ${OTEL_COLLECTOR_PORT_HTTP}
-#      - ${OTEL_COLLECTOR_HOST}
 #    environment:
+#      - OTEL_COLLECTOR_HOST
 #      - OTEL_COLLECTOR_PORT_GRPC
 #      - OTEL_COLLECTOR_PORT_HTTP
 #      - CATALINA_OPTS=-javaagent:/otel/opentelemetry-javaagent.jar -Dotel.service.name=${OTEL_COLLECTOR_HOST}
