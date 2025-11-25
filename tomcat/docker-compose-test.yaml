@@ -11,4 +11,4 @@ services:
       - default
     ports:
       - 8090
-    command: /bin/bash -c "curl http://localhost:8080"
+    command: /bin/bash -c "apt-get -y update; apt-get -y install curl; curl http://localhost:8080"
