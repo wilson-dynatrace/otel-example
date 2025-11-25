@@ -11,8 +11,8 @@ services:
       - default
     ports:
       - 8090:8080
-#      - "${OTEL_COLLECTOR_PORT_GRPC}:${OTEL_COLLECTOR_PORT_GRPC}"
-#      - "${OTEL_COLLECTOR_PORT_HTTP}:${OTEL_COLLECTOR_PORT_HTTP}"
+#      - ${OTEL_COLLECTOR_PORT_GRPC}
+#      - ${OTEL_COLLECTOR_PORT_HTTP}
 #    environment:
 #      - OTEL_COLLECTOR_PORT_GRPC
 #      - OTEL_COLLECTOR_PORT_HTTP
