@@ -1,6 +1,8 @@
 services:
   tomcat:
     image: tomcat:latest
+    networks:
+      - shared-net
     ports:
       - 8090:8080
 #      - "${OTEL_COLLECTOR_PORT_GRPC}:${OTEL_COLLECTOR_PORT_GRPC}"
@@ -14,3 +16,6 @@ services:
 #      - ../otel/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar
     command: /bin/bash -c "mv /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/ && rm -r /usr/local/tomcat/webapps.dist && catalina.sh run"
     
+networks:
+  shared-net:
+    external: true
