@@ -1,0 +1,14 @@
+networks:
+  default:
+    name: opentelemetry
+    driver: bridge
+    external: true
+
+services:
+  tomcat-test:
+    image: tomcat:latest
+    networks:
+      - default
+    ports:
+      - 8090
+    command: /bin/bash -c "curl http://localhost:8080"
