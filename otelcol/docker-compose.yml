@@ -9,9 +9,10 @@ x-default-logging: &logging
     tag: "{{.Name}}"
 
 networks:
-  shared-net:
+  default:
     name: opentelemetry
     driver: bridge
+    external: true
 
 services:
 
