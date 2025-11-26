@@ -23,8 +23,8 @@ services:
     restart: unless-stopped
     ports:
       - "${JAEGER_UI_PORT}:16686"          # Jaeger UI
-      - "${JAEGER_COLLECTOR_OTLP_GRPC_PORT}
-      - "${JAEGER_COLLECTOR_OTLP_HTTP_PORT}
+      - ${JAEGER_COLLECTOR_OTLP_GRPC_PORT}
+      - ${JAEGER_COLLECTOR_OTLP_HTTP_PORT}
     environment:
       - COLLECTOR_OTLP_ENABLED=true
       - MEMORY_MAX_TRACES=50000
