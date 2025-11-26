@@ -19,7 +19,7 @@ services:
 
   # Jaeger (all-in-one: collector + query + UI)
   jaeger:
-    image: ${JAEGER_IMAGE}
+    image: ${JAEGERTRACING_IMAGE}
     restart: unless-stopped
     ports:
       - "${JAEGER_QUERY_PORT}:16686"          # Jaeger UI
