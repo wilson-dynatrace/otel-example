@@ -102,7 +102,7 @@ services:
       - OTEL_COLLECTOR_HOST
       - OTEL_COLLECTOR_PORT_GRPC
       - OTEL_COLLECTOR_PORT_HTTP
-  depends_on:
+    depends_on:
       jaeger:
         condition: service_started
       prometheus:
