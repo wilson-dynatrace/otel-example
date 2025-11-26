@@ -134,4 +134,10 @@ services:
     ports:
       - "${PROMETHEUS_PORT}:${PROMETHEUS_PORT}"
     logging: *logging
-
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://prometheus:9090/-/healthy"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+      start_interval: 5s
