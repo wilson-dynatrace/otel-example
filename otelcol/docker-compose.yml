@@ -34,8 +34,8 @@ services:
     restart: unless-stopped
     ports:
       - "${JAEGER_UI_PORT}:${JAEGER_UI_PORT}"
-      - "${JAEGER_COLLECTOR_OTLP_GRPC_PORT}:${JAEGER_COLLECTOR_OTLP_GRPC_PORT}"
-      - "${JAEGER_COLLECTOR_OTLP_HTTP_PORT}:${JAEGER_COLLECTOR_OTLP_HTTP_PORT}"
+      - ${JAEGER_COLLECTOR_OTLP_GRPC_PORT}
+      - ${JAEGER_COLLECTOR_OTLP_HTTP_PORT}
     environment:
       - COLLECTOR_OTLP_ENABLED=true
       - JAEGER_UI_PORT
@@ -140,4 +140,3 @@ services:
       timeout: 5s
       retries: 3
       start_period: 30s
-      start_interval: 5s
