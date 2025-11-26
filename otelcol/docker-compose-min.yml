@@ -1,0 +1,23 @@
+networks:
+  opentelemetry:
+    name: opentelemetry
+    driver: bridge
+    external: true
+
+services:
+  # OpenTelemetry Collector
+  otel-collector:
+    image: ${COLLECTOR_CONTRIB_IMAGE}
+    networks:
+      - opentelemetry
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./src/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+#      - ./src/otel-collector-config.yaml:/etc/otel-collector-config-dt.yaml
+    ports:
+      - "${OTEL_COLLECTOR_PORT_OTLP_GRPC}:4317"     # OTLP gRPC
+      - "${OTEL_COLLECTOR_PORT_OTLP_HTTP}:4318"     # OTLP HTTP:
+      - "${OTEL_COLLECTOR_PORT_DEBUG}:13133"        # health_check extension
+    environment:
+#      - DT_ENDPOINT 
+#      - DT_API_TOKEN
