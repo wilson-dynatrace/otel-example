@@ -5,6 +5,11 @@ global:
   # Align Prometheus scrape interval with the OTel SDKs' export interval for consistency (see OTEL_METRIC_EXPORT_INTERVAL)
   scrape_interval: 60s
 
+scrape_configs:
+  - job_name: 'otel-collector'
+    static_configs:
+      - targets: ['otel-collector:8888']
+
 otlp:
   keep_identifying_resource_attributes: true
   promote_resource_attributes:
@@ -34,14 +39,6 @@ otlp:
     # When deploying on VMs, resource attributes used to identify
     # the host in dashboards and alerts.
     - host.name
-
-    # PostgreSQL resource attributes produced by the OTel Collector PostgreSQL receiver
-    # and used in dashboards and alerts.
-    # See https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/postgresqlreceiver/metadata.yaml
-    - postgresql.database.name
-    - postgresql.schema.name
-    - postgresql.table.name
-    - postgresql.index.name
 
 storage:
   tsdb:
