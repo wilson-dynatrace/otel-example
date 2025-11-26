@@ -13,7 +13,12 @@ exporters:
       insecure: true
   prometheus:
     endpoint: "0.0.0.0:9464"
-
+  # otlp/http exporter to Dynatrace.  
+#  otlphttp/dynatrace:  
+#    endpoint: "${DT_ENDPOINT}"  
+#    headers:  
+#      Authorization: "Api-Token ${DT_API_TOKEN}" 
+      
 service:
   pipelines:
     traces:
@@ -22,6 +27,18 @@ service:
     metrics:
       receivers: [otlp]
       exporters: [prometheus]
+#    traces/dynatrace:  
+#      receivers: [otlp]  
+#      processors: [batch]  
+#      exporters: [otlphttp/dynatrace]  
+#    metrics/dynatrace:  
+#      receivers: [otlp, spanmetrics]  
+#      processors: [batch, cumulativetodelta]  
+#      exporters: [otlphttp/dynatrace]  
+#    logs/dynatrace:  
+#      receivers: [otlp]  
+#      processors: [batch]  
+#      exporters: [otlphttp/dynatrace]
   telemetry:
     logs:
       level: info
