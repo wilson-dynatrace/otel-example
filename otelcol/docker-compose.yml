@@ -42,8 +42,16 @@ services:
       - OTEL_COLLECTOR_HOST
       - OTEL_COLLECTOR_PORT_HTTP
       - MEMORY_MAX_TRACES=25000
+      - COLLECTOR_OTLP_ENABLED=true
+      - COLLECTOR_OTLP_GRPC_HOST_PORT=:4317
     volumes:
       - ./src/jaeger/config.yml:/etc/jaeger/config.yml
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:16686 || exit 1"]  # Checks Jaeger UI readiness
+      start_period: 30s
+      interval: 10s
+      timeout: 5s
+      retries: 5
     logging: *logging
 
   # Grafana
