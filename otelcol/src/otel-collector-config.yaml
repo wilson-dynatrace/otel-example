@@ -5,8 +5,8 @@ receivers:
       http:
 
 exporters:
-  jaeger:
-    endpoint: "jaeger:14250"
+  otlp/jaeger:
+    endpoint: "${JAEGER_OTLP_ENDPOINT}"
     tls:
       insecure: true
   prometheus:
