@@ -46,7 +46,7 @@ services:
     volumes:
       - ./src/jaeger/config.yml:/etc/jaeger/config.yml
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:16686 || exit 1"]  # Checks Jaeger UI readiness
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://jaeger:16686 || exit 1"]  # Checks Jaeger UI readiness
       start_period: 30s
       interval: 10s
       timeout: 5s
