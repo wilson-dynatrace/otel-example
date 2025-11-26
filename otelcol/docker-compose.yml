@@ -1,13 +1,6 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
-x-default-logging: &logging
-  driver: "json-file"
-  options:
-    max-size: "5m"
-    max-file: "2"
-    tag: "{{.Name}}"
-
 networks:
   opentelemetry:
     name: opentelemetry
@@ -21,29 +14,28 @@ services:
   # ********************
   # Jaeger
   jaeger:
-    image: ${JAEGERTRACING_IMAGE}
+    image: ${JAEGER_IMAGE}
     container_name: jaeger
     command:
       - "--config=file:/etc/jaeger/config.yml"
     networks:
-      - opentelemetry
+      - ${NETWORK_NAME}
     deploy:
       resources:
         limits:
-          memory: 1200M
+          memory: ${JAEGER_MEMORY_LIMIT}
     restart: unless-stopped
     ports:
       - "${JAEGER_UI_PORT}:${JAEGER_UI_PORT}"
       - "${JAEGER_GRPC_PORT}:${JAEGER_GRPC_PORT}"
+      - "${JAEGER_HTTP_PORT}:${JAEGER_HTTP_PORT}"
     environment:
-      - JAEGER_HOST
-      - JAEGER_GRPC_PORT
-      - PROMETHEUS_ADDR
-      - OTEL_COLLECTOR_HOST
-      - OTEL_COLLECTOR_PORT_HTTP
-      - MEMORY_MAX_TRACES=25000
       - COLLECTOR_OTLP_ENABLED=true
-      - COLLECTOR_OTLP_GRPC_HOST_PORT=:4317
+      - JAEGER_UI_PORT
+      - JAEGER_GRPC_PORT
+      - JAEGER_HTTP_PORT
+      - MEMORY_MAX_TRACES=25000
+      - SPAN_STORAGE_TYPE=memory
     volumes:
       - ./src/jaeger/config.yml:/etc/jaeger/config.yml
     healthcheck:
@@ -59,15 +51,16 @@ services:
     image: ${GRAFANA_IMAGE}
     container_name: grafana
     networks:
-      - opentelemetry
+      - ${NETWORK_NAME}
     deploy:
       resources:
         limits:
           memory: 120M
     restart: unless-stopped
     environment:
-      - "GF_INSTALL_PLUGINS=grafana-opensearch-datasource"
-#      - "GF_SERVER_HTTP_ADDR=0.0.0.0"
+      - GF_AUTH_ANONYMOUS_ENABLED=true          # dev only!
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
     volumes:
       - ./src/grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./src/grafana/provisioning/:/etc/grafana/provisioning/
@@ -80,7 +73,7 @@ services:
     image: ${COLLECTOR_CONTRIB_IMAGE}
     container_name: otel-collector
     networks:
-      - opentelemetry
+      - ${NETWORK_NAME}
     deploy:
       resources:
         limits:
@@ -94,23 +87,22 @@ services:
       - ${OTEL_COLLECTOR_CONFIG}:/etc/otelcol-config.yml
       - ${OTEL_COLLECTOR_CONFIG_EXTRAS}:/etc/otelcol-config-extras.yml
     ports:
-      - "${OTEL_COLLECTOR_PORT_GRPC}:${OTEL_COLLECTOR_PORT_GRPC}"
-      - "${OTEL_COLLECTOR_PORT_HTTP}:${OTEL_COLLECTOR_PORT_HTTP}"
+      - "${OTEL_COLLECTOR_PORT_OTLP_GRPC}:${OTEL_COLLECTOR_PORT_OTLP_GRPC}"
+      - "${OTEL_COLLECTOR_PORT_OTLP_HTTP}:${OTEL_COLLECTOR_PORT_OTLP_HTTP}"
     depends_on:
       jaeger:
         condition: service_started
-      opensearch:
+      prometheus:
         condition: service_healthy
     logging: *logging
     environment:
-      - FRONTEND_PROXY_ADDR
-      - IMAGE_PROVIDER_HOST
-      - IMAGE_PROVIDER_PORT
       - HOST_FILESYSTEM
       - OTEL_COLLECTOR_HOST
       - OTEL_COLLECTOR_PORT_GRPC
       - OTEL_COLLECTOR_PORT_HTTP
-      - GOMEMLIMIT=160MiB
+  depends_on:
+    - prometheus
+    - jaeger
 
   # Prometheus
   prometheus:
