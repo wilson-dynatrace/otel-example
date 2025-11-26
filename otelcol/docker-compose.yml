@@ -53,7 +53,7 @@ services:
       - "${GRAFANA_PORT}:3000"
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana-provisioning/:/etc/grafana/provisioning/
+      - ./src/grafana-provisioning/:/etc/grafana/provisioning/
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true          # dev only!
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
