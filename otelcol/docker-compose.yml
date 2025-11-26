@@ -1,7 +1,15 @@
+networks:
+  opentelemetry:
+    name: opentelemetry
+    driver: bridge
+    external: true
+
 services:
   # OpenTelemetry Collector
   otel-collector:
     image: ${COLLECTOR_CONTRIB_IMAGE}
+    networks:
+      - opentelemetry
     command: ["--config=/etc/otel-collector-config.yaml"]
     volumes:
       - ./src/otel-collector-config.yaml:/etc/otel-collector-config.yaml
@@ -20,6 +28,8 @@ services:
   jaeger:
     image: ${JAEGERTRACING_IMAGE}
     restart: unless-stopped
+    networks:
+      - opentelemetry
     ports:
       - "${JAEGER_UI_PORT}:16686"          # Jaeger UI
       - ${JAEGER_COLLECTOR_OTLP_GRPC_PORT}
@@ -33,6 +43,8 @@ services:
   # Prometheus
   prometheus:
     image: ${PROMETHEUS_IMAGE}
+    networks:
+      - opentelemetry
     command:
       - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.path=/prometheus
@@ -48,6 +60,8 @@ services:
   grafana:
     image: ${GRAFANA_IMAGE}
     restart: unless-stopped
+    networks:
+      - opentelemetry
     ports:
       - "${GRAFANA_PORT}:3000"
     volumes:
