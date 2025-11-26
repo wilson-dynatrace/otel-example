@@ -1,0 +1,33 @@
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+exporters:
+  # otlp/http exporter to Dynatrace.  
+  otlphttp/dynatrace:  
+    endpoint: "${DT_ENDPOINT}"  
+    headers:  
+      Authorization: "Api-Token ${DT_API_TOKEN}" 
+      
+service:
+  pipelines:
+    traces/dynatrace:  
+      receivers: [otlp]  
+      processors: [batch]  
+      exporters: [otlphttp/dynatrace]  
+    metrics/dynatrace:  
+      receivers: [otlp, spanmetrics]  
+      processors: [batch, cumulativetodelta]  
+      exporters: [otlphttp/dynatrace]  
+    logs/dynatrace:  
+      receivers: [otlp]  
+      processors: [batch]  
+      exporters: [otlphttp/dynatrace]
+  telemetry:
+    logs:
+      level: info
