@@ -133,6 +133,8 @@ services:
       dockerfile: ${OPENSEARCH_DOCKERFILE}
       cache_from:
         - ${IMAGE_NAME}:${IMAGE_VERSION}-opensearch
+    networks:
+      - opentelemetry
     deploy:
       resources:
         limits:
