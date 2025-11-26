@@ -23,6 +23,8 @@ services:
     environment:
       - JAEGER_ENDPOINT=http://jaeger:14250
       - PROMETHEUS_ENDPOINT=http://prometheus:9090
+#      - DT_ENDPOINT 
+#      - DT_API_TOKEN
 
   # Jaeger (all-in-one: collector + query + UI)
   jaeger:
