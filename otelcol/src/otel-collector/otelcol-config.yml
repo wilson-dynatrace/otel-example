@@ -12,12 +12,6 @@ receivers:
           allowed_origins:
             - "http://*"
             - "https://*"
-  httpcheck/frontend-proxy:
-    targets:
-      - endpoint: http://${env:FRONTEND_PROXY_ADDR}
-  nginx:
-    endpoint: http://${env:IMAGE_PROVIDER_HOST}:${env:IMAGE_PROVIDER_PORT}/status
-    collection_interval: 10s
   docker_stats:
     endpoint: unix:///var/run/docker.sock
   # Host metrics
@@ -139,7 +133,7 @@ service:
       processors: [resourcedetection, memory_limiter, transform]
       exporters: [otlp, debug, spanmetrics]
     metrics:
-      receivers: [docker_stats, httpcheck/frontend-proxy, hostmetrics, nginx, otlp, spanmetrics]
+      receivers: [docker_stats, hostmetrics, otlp, spanmetrics]
       processors: [resourcedetection, memory_limiter]
       exporters: [otlphttp/prometheus, debug]
     logs:
