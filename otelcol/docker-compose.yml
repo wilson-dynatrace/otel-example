@@ -25,6 +25,8 @@ services:
     container_name: jaeger
     command:
       - "--config=file:/etc/jaeger/config.yml"
+    networks:
+      - opentelemetry
     deploy:
       resources:
         limits:
@@ -48,6 +50,8 @@ services:
   grafana:
     image: ${GRAFANA_IMAGE}
     container_name: grafana
+    networks:
+      - opentelemetry
     deploy:
       resources:
         limits:
@@ -116,6 +120,8 @@ services:
       - --enable-feature=exemplar-storage
     volumes:
       - ./src/prometheus/prometheus-config.yaml:/etc/prometheus/prometheus-config.yaml
+    networks:
+      - opentelemetry
     deploy:
       resources:
         limits:
