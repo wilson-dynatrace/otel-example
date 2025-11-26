@@ -96,11 +96,6 @@ services:
     ports:
       - "${OTEL_COLLECTOR_PORT_OTLP_GRPC}:${OTEL_COLLECTOR_PORT_OTLP_GRPC}"
       - "${OTEL_COLLECTOR_PORT_OTLP_HTTP}:${OTEL_COLLECTOR_PORT_OTLP_HTTP}"
-    depends_on:
-      jaeger:
-        condition: service_started
-      prometheus:
-        condition: service_healthy
     logging: *logging
     environment:
       - HOST_FILESYSTEM
@@ -108,8 +103,10 @@ services:
       - OTEL_COLLECTOR_PORT_GRPC
       - OTEL_COLLECTOR_PORT_HTTP
   depends_on:
-    - prometheus
-    - jaeger
+      jaeger:
+        condition: service_started
+      prometheus:
+        condition: service_healthy
 
   # Prometheus
   prometheus:
