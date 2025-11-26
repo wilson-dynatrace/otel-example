@@ -133,7 +133,7 @@ service:
       processors: [resourcedetection, memory_limiter, transform]
       exporters: [otlp, debug, spanmetrics]
     metrics:
-      receivers: [docker_stats, httpcheck/frontend-proxy, hostmetrics, nginx, otlp, postgresql, redis, spanmetrics]
+      receivers: [docker_stats, httpcheck/frontend-proxy, hostmetrics, otlp, spanmetrics]
       processors: [resourcedetection, memory_limiter]
       exporters: [otlphttp/prometheus, debug]
     logs:
