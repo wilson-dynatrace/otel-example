@@ -14,76 +14,6 @@ receivers:
             - "https://*"
   docker_stats:
     endpoint: unix:///var/run/docker.sock
-  # Host metrics
-  hostmetrics:
-    root_path: /hostfs
-    scrapers:
-      cpu:
-        metrics:
-          system.cpu.utilization:
-            enabled: true
-          system.cpu.logical.count:
-            enabled: true
-      disk:
-      load:
-      filesystem:
-        exclude_mount_points:
-          mount_points:
-            - /dev/*
-            - /proc/*
-            - /sys/*
-            - /run/k3s/containerd/*
-            - /var/lib/docker/*
-            - /var/lib/kubelet/*
-            - /snap/*
-          match_type: regexp
-        exclude_fs_types:
-          fs_types:
-            - autofs
-            - binfmt_misc
-            - bpf
-            - cgroup2
-            - configfs
-            - debugfs
-            - devpts
-            - devtmpfs
-            - fusectl
-            - hugetlbfs
-            - iso9660
-            - mqueue
-            - nsfs
-            - overlay
-            - proc
-            - procfs
-            - pstore
-            - rpc_pipefs
-            - securityfs
-            - selinuxfs
-            - squashfs
-            - sysfs
-            - tracefs
-          match_type: strict
-      memory:
-        metrics:
-          system.memory.utilization:
-            enabled: true
-          system.memory.limit:
-            enabled: true
-      network:
-      paging:
-        metrics:
-          system.paging.usage:
-            enabled: true
-
-      processes:
-      process:
-        mute_process_exe_error: true
-        mute_process_io_error: true
-        mute_process_user_error: true
-      system:
-        metrics:
-          system.uptime:
-            enabled: true
 exporters:
   debug:
   otlp:
@@ -96,17 +26,15 @@ exporters:
     endpoint: "http://prometheus:9090/api/v1/otlp"
     tls:
       insecure: true
-    sending_queue:
+      sending_queue:
       batch:
-  opensearch:
-    logs_index: otel-logs
-    logs_index_time_format: "yyyy-MM-dd"
-    http:
-      endpoint: "http://opensearch:9200"
-      tls:
-        insecure: true
-    sending_queue:
-      batch:
+  jaeger:
+    endpoint: "jaeger:14250"
+    tls:
+      insecure: true
+  prometheus:
+    endpoint: "0.0.0.0:8888"
+    
 processors:
   memory_limiter:
     check_interval: 5s
