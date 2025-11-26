@@ -21,7 +21,7 @@ services:
   # ********************
   # Jaeger
   jaeger:
-    image: ${JAEGER_IMAGE}
+    image: ${JAEGERTRACING_IMAGE}
     container_name: jaeger
     command:
       - "--config=file:/etc/jaeger/config.yml"
