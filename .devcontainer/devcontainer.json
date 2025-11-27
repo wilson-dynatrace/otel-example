@@ -40,8 +40,8 @@
 
 	// Add recommended secrets
 	"secrets": {
-		"DT_ENV_URL": {
-			"description": "e.g. https://abc12345.apps.dynatrace.com"
+		"DT_TENANT_URL": {
+			"description": "SaaS tenant URL, e.g. https://abc12345.apps.dynatrace.com"
 	 	},
 		"DT_API_TOKEN": {
 			"description": "Dynatrace API token with these permissions: `logs.ingest`, `events.ingest`, `metrics.ingest`, `openTelemetry.ingest`"
