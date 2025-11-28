@@ -10,7 +10,7 @@ services:
     image: ${COLLECTOR_CONTRIB_IMAGE}
     networks:
       - opentelemetry
-    command: ["--config=/etc/otel-collector-config.yaml"]
+    command: ["--config=/etc/otel-collector-config.yaml --config=/etc/otel-collector-config-extras.yaml"]
     volumes:
       - ./src/otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
