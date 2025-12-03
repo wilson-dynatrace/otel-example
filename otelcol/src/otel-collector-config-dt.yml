@@ -1,4 +1,3 @@
-
 receivers:
   otlp:
     protocols:
@@ -8,25 +7,27 @@ receivers:
         endpoint: 0.0.0.0:4318
 
 exporters:
-  # otlp/http exporter to Dynatrace.  
   otlphttp/dynatrace:  
     endpoint: "${DT_ENDPOINT}"  
     headers:  
       Authorization: "Api-Token ${DT_API_TOKEN}" 
+  environment:
+    - DT_ENDPOINT 
+    - DT_API_TOKEN
       
 service:
   pipelines:
     traces/dynatrace:  
       receivers: [otlp]  
-      processors: [batch]  
+      processors: []  
       exporters: [otlphttp/dynatrace]  
     metrics/dynatrace:  
-      receivers: [otlp, spanmetrics]  
-      processors: [batch, cumulativetodelta]  
+      receivers: [otlp]  
+      processors: [cumulativetodelta]  
       exporters: [otlphttp/dynatrace]  
     logs/dynatrace:  
       receivers: [otlp]  
-      processors: [batch]  
+      processors: []  
       exporters: [otlphttp/dynatrace]
   telemetry:
     logs:
