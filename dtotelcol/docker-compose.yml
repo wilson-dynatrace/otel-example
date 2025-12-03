@@ -8,6 +8,8 @@ services:
   collector:
     image: ghcr.io/dynatrace/dynatrace-otel-collector/dynatrace-otel-collector:latest
     command: ["--config=/etc/otelcol/otel-collector-config.yaml"]
+    networks:
+      - opentelemetry
     volumes:
       - ./otel-collector-config.yml:/etc/otelcol/otel-collector-config.yaml
     ports:
