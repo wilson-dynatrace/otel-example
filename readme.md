@@ -81,10 +81,10 @@ You should see the distributed trace in Jaeger UI.
 ### Exercise 3 Forward the telemetry data to Dynatrace
 
 1. Stop the Opentelemetry suite (if running)
-2. Setup the environment. Make sure the following environment variables are define<br>
+2. Setup the environment. Make sure the following environment variables are defined<br>
    DT_ENDPOINT<br>
    DT_API_TOKEN<br>
-3. In otelcol/src folder, modify the docker-compose-config.yml and remove the comments from line 17-23 and 33-44
+3. In otelcol/src folder, modify the otel-collector-config.yml and remove the comments from line 17-23 and 33-44
 4. Launch the OpenTelemetry suite <code>docker compose up -d</code>
 5. Visit the web application to trigger a transaction
 
