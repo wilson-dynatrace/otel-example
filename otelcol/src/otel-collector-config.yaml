@@ -15,9 +15,9 @@ exporters:
     endpoint: "0.0.0.0:9464"
   # otlp/http exporter to Dynatrace.  
 #  otlphttp/dynatrace:  
-#    endpoint: "${DT_ENDPOINT}"  
+#    endpoint: "${env:DT_ENDPOINT}"  
 #    headers:  
-#      Authorization: "Api-Token ${DT_API_TOKEN}" 
+#      Authorization: "Api-Token ${env:DT_API_TOKEN}" 
 #  environment:
 #    - DT_ENDPOINT 
 #    - DT_API_TOKEN
