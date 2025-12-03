@@ -42,6 +42,7 @@ Note that the tomcat does not have any instrumentation.
       </td>
    </tr>
 </table>
+
 ### Exercise 2 Monitor the application with OpenTelemetry
 
 #### Start the OpenTelemetry suite
@@ -58,6 +59,25 @@ Note that the tomcat does not have any instrumentation.
 
 You should see the distributed trace in Jaeger UI.
 
+<table>
+   <tr>
+      <th>Docker</th>
+      <th>Kubernetes</th>
+   </tr>
+   <tr>
+      <td>
+         Files involved.
+         <ul>
+           <li>.env</li>
+           <li>otelcol/docker-compose.yml</li>
+           <li>otelcol/src/otel-collector-config.yml</li>
+         </ul>
+      </td>
+      <td>
+      </td>
+   </tr>
+</table>
+
 ### Exercise 3 Forward the telemetry data to Dynatrace
 
 1. Stop the Opentelemetry suite (if running)
@@ -70,14 +90,71 @@ You should see the distributed trace in Jaeger UI.
 
 You should see the distributed trace in Jaeger UI as well as Dynatrace UI.
 
+<table>
+   <tr>
+      <th>Docker</th>
+      <th>Kubernetes</th>
+   </tr>
+   <tr>
+      <td>
+         Files involved.
+         <ul>
+           <li>.env</li>
+           <li>otelcol/docker-compose.yml</li>
+           <li>otelcol/src/otel-collector-config.yml</li>
+         </ul>
+      </td>
+      <td>
+      </td>
+   </tr>
+</table>
+
 ### Exercise 4 Collect telemetry data with OpenTelemetry Collector
 
 1. Stop the Opentelemetry suite (if running)
 2. Launch the collector only container via <code>docker-compose -f docker-compose-min.yml up</code>
 3. Visit the web page to trigger a transaction and validate the result in Dynatrace (note Jaeger not longer running); You may restart the tomcat container to resume the connection.
 
+<table>
+   <tr>
+      <th>Docker</th>
+      <th>Kubernetes</th>
+   </tr>
+   <tr>
+      <td>
+         Files involved.
+         <ul>
+           <li>.env</li>
+           <li>otelcol/docker-compose-min.yml</li>
+           <li>otelcol/src/otel-collector-config-dt.yml</li>
+         </ul>
+      </td>
+      <td>
+      </td>
+   </tr>
+</table>
+
 ### Exercise 5 Collect telemetry data with Dynatrace OpenTelemetry Collector
 
 1. Stop the Opentelemetry suite or collector (if running)
 2. Go to <code>dtotelcol</code> folder and launch the Dynatrace collector via <code>docker compose up -d</code>
 3. Visit the web page to trigger a transaction and validate the result in Dynatrace; Again, you may restart the tomcat container to resume the connection.
+
+<table>
+   <tr>
+      <th>Docker</th>
+      <th>Kubernetes</th>
+   </tr>
+   <tr>
+      <td>
+         Files involved.
+         <ul>
+           <li>.env</li>
+           <li>dtotelcol/docker-compose.yml</li>
+           <li>dtotelcol/otel-collector-config.yml</li>
+         </ul>
+      </td>
+      <td>
+      </td>
+   </tr>
+</table>
