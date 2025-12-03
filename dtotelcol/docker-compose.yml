@@ -1,3 +1,9 @@
+networks:
+  opentelemetry:
+    name: opentelemetry
+    driver: bridge
+    external: true
+
 services:
   collector:
     image: ghcr.io/dynatrace/dynatrace-otel-collector/dynatrace-otel-collector:latest
