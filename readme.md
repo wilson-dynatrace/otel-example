@@ -3,7 +3,7 @@
 ## Preparation
 
 1. In Dynatrace, create an access token with the Ingest scopes.
-2. Setup the environment
+2. Setup the environment variables (required for exercise 3 and onwards)
 
    <code>export DT_ENDPOINT=https://{your-environment-id}.live.dynatrace.com/api/v2/otlp</code><br>
    <code>export DT_API_TOKEN={your-api-token}</code>
