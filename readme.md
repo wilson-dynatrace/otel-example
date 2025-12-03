@@ -53,7 +53,7 @@ Note that the tomcat does not have any instrumentation.
 
 #### Update tomcat to include the Opentelemetry instrumentation 
 
-1. In tomcat folder, modify the docker-compose.yml and remove the comments from line 14-23
+1. In tomcat folder, modify docker-compose.yml and remove the comments from line 14-23
 2. Launch the tomcat container again <code>docker compose up -d</code>
 3. Visit the (tomcat) web application to trigger a transaction (You may restart the tomcat container to resume the connection)
 
@@ -84,7 +84,7 @@ You should see the distributed trace in Jaeger UI.
 2. Setup the environment. Make sure the following environment variables are defined<br>
    DT_ENDPOINT<br>
    DT_API_TOKEN<br>
-3. In otelcol/src folder, modify the otel-collector-config.yml and remove the comments from line 17-23 and 33-44
+3. In otelcol/src folder, modify otel-collector-config.yml and remove the comments from line 17-23 and 33-44
 4. Launch the OpenTelemetry suite <code>docker compose up -d</code>
 5. Visit the web application to trigger a transaction
 
