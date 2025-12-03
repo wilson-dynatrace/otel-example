@@ -16,7 +16,7 @@ Start a new codespace.
 
 1. Go to tomcat folder
 2. Start the tomcat application
-      docker compose up -d
+   <code>docker compose up -d</code>
 3. Once the tomcat container is up and running, you can
    a. Forward port 8090 to visit tomcat
    b. Run the curl container with "docker-compose -f docker-compose-test.yml up" to see if you get the web page (HTML)
