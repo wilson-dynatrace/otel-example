@@ -6,7 +6,7 @@
 2. Setup the environment
 
    <code>export DT_ENDPOINT=https://{your-environment-id}.live.dynatrace.com/api/v2/otlp
-   export DT_API_TOKEN={your-api-token}
+    export DT_API_TOKEN={your-api-token}
    </code>
 
 ## Hands On
