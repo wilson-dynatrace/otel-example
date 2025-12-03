@@ -29,19 +29,28 @@ Note that the tomcat does not have any instrumentation.
 #### Start the OpenTelemetry suite
 
 1. Go to otelcol folder
-2. Start the OpenTelemetry suite <code>docker compose up -d</code>
+2. Launch the OpenTelemetry suite <code>docker compose up -d</code>
 3. Once the services are ready, Forward port 16686 to access the Jaeger UI
 
 #### Update tomcat to include the Opentelemetry instrumentation 
 
 1. In tomcat folder, modify the docker-compose.yml and remove the comments from line 14-23
 2. Launch the tomcat container again <code>docker compose up -d</code>
-3. Visit the web page to trigger a transaction
+3. Visit the (tomcat) web application to trigger a transaction
 
 You should see the distributed trace in Jaeger UI.
 
 ### Exercise 3 Forward the telemetry data to Dynatrace
 
+1. Stop the Opentelemetry suite (if running)
+2. Setup the environment. Make sure the following environment variables are define<br>
+   DT_ENDPOINT<br>
+   DT_API_TOKEN<br>
+3. In otelcol/src folder, modify the docker-compose-config.yml and remove the comments from line 17-23 and 33-44
+4. Launch the OpenTelemetry suite <code>docker compose up -d</code>
+5. Visit the web application to trigger a transaction
+
+You should see the distributed trace in Jaeger UI as well as Dynatrace UI.
 
 ### Exercise 4 Collect telemetry data with OpenTelemetry Collector
 
@@ -52,5 +61,5 @@ You should see the distributed trace in Jaeger UI.
 ### Exercise 5 Collect telemetry data with Dynatrace OpenTelemetry Collector
 
 1. Stop the Opentelemetry suite or collector (if running)
-2. Go to dtotelcol folder and launch the Dynatrace collector via <code>docker compose up -d</code>
-3. Visit the web page to trigger a transaction and validate the result in Dynatrace; Again, you may restart the tomcat container to resume the 
+2. Go to <code>dtotelcol</code> folder and launch the Dynatrace collector via <code>docker compose up -d</code>
+3. Visit the web page to trigger a transaction and validate the result in Dynatrace; Again, you may restart the tomcat container to resume the connection.
