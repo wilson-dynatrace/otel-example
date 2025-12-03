@@ -1,3 +1,10 @@
+x-default-logging: &logging
+  driver: "json-file"
+  options:
+    max-size: "5m"
+    max-file: "2"
+    tag: "{{.Name}}"
+    
 networks:
   opentelemetry:
     name: opentelemetry
@@ -11,6 +18,7 @@ services:
     networks:
       - opentelemetry
     command: ["--config=/etc/otel-collector-config.yaml", "--config=/etc/otel-collector-config-extras.yaml"]
+    logging: *logging
     volumes:
       - ./src/otel-collector-config.yaml:/etc/otel-collector-config.yaml
       - ./otelcol-config-extras.yml:/etc/otel-collector-config-extras.yaml
