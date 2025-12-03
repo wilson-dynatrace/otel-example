@@ -83,6 +83,7 @@ services:
       - GF_AUTH_ANONYMOUS_ENABLED=true          # dev only!
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_LOG_LEVEL=warn                        # supress log
     depends_on:
       - prometheus
       - jaeger
