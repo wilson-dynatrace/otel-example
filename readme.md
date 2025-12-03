@@ -55,7 +55,7 @@ Note that the tomcat does not have any instrumentation.
 
 1. In tomcat folder, modify the docker-compose.yml and remove the comments from line 14-23
 2. Launch the tomcat container again <code>docker compose up -d</code>
-3. Visit the (tomcat) web application to trigger a transaction
+3. Visit the (tomcat) web application to trigger a transaction (You may restart the tomcat container to resume the connection)
 
 You should see the distributed trace in Jaeger UI.
 
