@@ -24,6 +24,24 @@ Start a new codespace.
 
 Note that the tomcat does not have any instrumentation.
 
+<table>
+   <tr>
+      <th>Docker</th>
+      <th>Kubernetes</th>
+   </tr>
+   <tr>
+      <td>
+         Files involved.
+         <ul>
+           <li>.env</li>
+           <li>tomcat/docker-compose.yml</li>
+           <li>tomcat/docker-compose-test.yml</li>
+         </ul>
+      </td>
+      <td>
+      </td>
+   </tr>
+</table>
 ### Exercise 2 Monitor the application with OpenTelemetry
 
 #### Start the OpenTelemetry suite
