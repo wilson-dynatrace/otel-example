@@ -11,14 +11,14 @@ services:
       - opentelemetry
     ports:
       - 8090:8080
-      - ${OTEL_COLLECTOR_PORT_GRPC}
-      - ${OTEL_COLLECTOR_PORT_HTTP}
-    environment:
-      - OTEL_COLLECTOR_PORT_GRPC
-      - OTEL_COLLECTOR_PORT_HTTP
-      - OTEL_EXPORTER_OTLP_ENDPOINT
-      - CATALINA_OPTS=-javaagent:/otel/opentelemetry-javaagent.jar -Dotel.exporter.otlp.endpoint=http://${OTEL_EXPORTER_OTLP_ENDPOINT}:${OTEL_COLLECTOR_PORT_HTTP}
-      - OTEL_SERVICE_NAME=tomcat
-    volumes:
-      - ../otel/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar
+#      - ${OTEL_COLLECTOR_PORT_GRPC}
+#      - ${OTEL_COLLECTOR_PORT_HTTP}
+#    environment:
+#      - OTEL_COLLECTOR_PORT_GRPC
+#      - OTEL_COLLECTOR_PORT_HTTP
+#      - OTEL_EXPORTER_OTLP_ENDPOINT
+#      - CATALINA_OPTS=-javaagent:/otel/opentelemetry-javaagent.jar -Dotel.exporter.otlp.endpoint=http://${OTEL_EXPORTER_OTLP_ENDPOINT}:${OTEL_COLLECTOR_PORT_HTTP}
+#      - OTEL_SERVICE_NAME=tomcat
+#    volumes:
+#      - ../otel/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar
     command: /bin/bash -c "mv /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/ && rm -r /usr/local/tomcat/webapps.dist && catalina.sh run"
