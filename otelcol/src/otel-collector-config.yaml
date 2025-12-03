@@ -32,15 +32,15 @@ service:
       exporters: [prometheus]
 #    traces/dynatrace:  
 #      receivers: [otlp]  
-#      processors: [batch]  
+#      processors: []  
 #      exporters: [otlphttp/dynatrace]  
 #    metrics/dynatrace:  
-#      receivers: [otlp, spanmetrics]  
-#      processors: [batch, cumulativetodelta]  
+#      receivers: [otlp]  
+#      processors: [cumulativetodelta]  
 #      exporters: [otlphttp/dynatrace]  
 #    logs/dynatrace:  
 #      receivers: [otlp]  
-#      processors: [batch]  
+#      processors: []  
 #      exporters: [otlphttp/dynatrace]
   telemetry:
     logs:
