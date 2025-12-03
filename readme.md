@@ -5,7 +5,7 @@
 1. In Dynatrace, create an access token with the Ingest scopes.
 2. Setup the environment
 
-export DT_ENDPOINT=https://{your-environment-id}.live.dynatrace.com/api/v2/otlp
+export DT_ENDPOINT=https://{your-environment-id}.live.dynatrace.com/api/v2/otlp<br>
 export DT_API_TOKEN={your-api-token}
 
 ## Hands On
