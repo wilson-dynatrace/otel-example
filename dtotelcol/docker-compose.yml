@@ -5,7 +5,7 @@ networks:
     external: true
 
 services:
-  collector:
+  otel-collector:
     image: ghcr.io/dynatrace/dynatrace-otel-collector/dynatrace-otel-collector:latest
     command: ["--config=/etc/otelcol/otel-collector-config.yaml"]
     networks:
