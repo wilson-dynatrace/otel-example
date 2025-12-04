@@ -1,9 +1,14 @@
 services:
-  app:
-    build: .
+  php-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
-      AUTORELOAD_PROGRAMS: "swoole"
-      AUTORELOAD_ANY_FILES: 0
+      - AUTORELOAD_PROGRAMS="swoole"
+      - AUTORELOAD_ANY_FILES=0
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
+      - OTEL_SERVICE_NAME=my-php-app
+      - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=docker      
     ports:
       - 8000:9501
     volumes:
