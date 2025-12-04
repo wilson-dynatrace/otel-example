@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    environment:
+      AUTORELOAD_PROGRAMS: "swoole"
+      AUTORELOAD_ANY_FILES: 0
+    ports:
+      - 8000:9501
+    volumes:
+      - ./www:/var/www
