@@ -19,7 +19,7 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
+      processors: []
       exporters: [otlphttp/dynatrace]
     metrics:
       receivers: [otlp]
@@ -27,5 +27,5 @@ service:
       exporters: [otlphttp/dynatrace]
     logs:
       receivers: [otlp]
-      processors: [batch]
+      processors: []
       exporters: [otlphttp/dynatrace]
