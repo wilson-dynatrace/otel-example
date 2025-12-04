@@ -9,6 +9,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    networks:
+      - opentelemetry
     environment:
       - AUTORELOAD_PROGRAMS="swoole"
       - AUTORELOAD_ANY_FILES=0
