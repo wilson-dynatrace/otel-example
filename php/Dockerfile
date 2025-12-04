@@ -2,6 +2,8 @@ FROM phpswoole/swoole:latest
 
 # COPY ./www/ /var/www/
 
+RUN curl -sSfL https://github.com/open-telemetry/opentelemetry-php-instrumentation/releases/download/v1.0.5/opentelemetry-php-instrumentation-installer.sh | bash
+
 ENV OTEL_PHP_AUTOLOAD_ENABLED=true \
     OTEL_TRACES_EXPORTER=otlp \
     OTEL_METRICS_EXPORTER=none \
