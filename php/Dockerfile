@@ -1,10 +1,6 @@
 # Dockerfile
 #FROM phpswoole/swoole:latest
-#FROM php:8.3-fpm   # or php:8.3-cli, php:8.3-apache, etc.
-FROM shivammathur/opentelemetry-php:8.3-fpm-latest
-
-COPY . /var/www/html
-WORKDIR /var/www/html
+FROM php:8.3-fpm   # or php:8.3-cli, php:8.3-apache, etc.
 
 # COPY ./www/ /var/www/
 
