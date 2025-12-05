@@ -3,6 +3,10 @@ Commands:
 <code>docker-compose -f "docker-compose.yml" up --build --force-recreate -d</code><br>
 <code>docker-compose -f "docker-compose.yml" stop</code><br>
 
+Build and run the image
+
+docker build -t <image-name> . && docker run -d -p <host-port>:<container-port> <image-name>
+
 Once the container is running, forward port 8000 to access the application.
 
 Commands to verify versions:
