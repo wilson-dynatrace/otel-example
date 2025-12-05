@@ -1,6 +1,6 @@
 # Sample Tomcat application
 
-## Start the tomcat application via docker
+## Start the Tomcat docker container
 
     docker compose up
 
