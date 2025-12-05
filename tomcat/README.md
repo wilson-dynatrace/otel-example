@@ -2,7 +2,10 @@
 
 ## Start the tomcat application via docker
 
-    docker-compose -f docker-compose.yml up
+    <code>docker compose up</code> or
+    <code>docker-compose -f docker-compose.yml up</code>
+
+Test the tomcat by forward port 8090 or using <code>docker-compose -f docker-compose-test.yml up</code>
 
 ## Start the tomcat application via kubectl
 
