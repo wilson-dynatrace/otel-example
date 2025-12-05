@@ -2,8 +2,11 @@
 
 ## Start the tomcat application via docker
 
-    <code>docker compose up</code> or
-    <code>docker-compose -f docker-compose.yml up</code>
+    docker compose up
+    
+    or
+    
+    docker-compose -f docker-compose.yml up
 
 Test the tomcat by forward port 8090 or using <code>docker-compose -f docker-compose-test.yml up</code>
 
