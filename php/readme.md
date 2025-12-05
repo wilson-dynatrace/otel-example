@@ -9,4 +9,5 @@ Commands to verify versions:
 
 <code>docker run --rm phpswoole/swoole:latest "php -m"</code><br>
 <code>docker run --rm phpswoole/swoole:latest "php --ri swoole"</code><br>
+<code>docker run --rm phpswoole/swoole:latest "php --ri opentelemetry"</code><br>
 <code>docker run --rm phpswoole/swoole:latest "composer --version"</code><br>
