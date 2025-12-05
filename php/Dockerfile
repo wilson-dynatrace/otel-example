@@ -5,8 +5,8 @@ FROM php:8.3-fpm   # or php:8.3-cli, php:8.3-apache, etc.
 # COPY ./www/ /var/www/
 
 #RUN curl -sSfL https://github.com/open-telemetry/opentelemetry-php-instrumentation/releases/download/v1.0.5/opentelemetry-php-instrumentation-installer.sh | bash
-RUN ( curl -sSLf https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - || echo 'return 1' ) | sh -s \
-      gd xdebug
+RUN ( curl -sSLf https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - || echo 'return 1' ) | \
+      sh -s gd xdebug
       
 ENV OTEL_PHP_AUTOLOAD_ENABLED=true \
     OTEL_TRACES_EXPORTER=otlp \
