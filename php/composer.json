@@ -1,0 +1,10 @@
+{
+    "require": {
+        "php": ">=8.1",
+        "swoole/swoole": "^5.0",
+        "open-telemetry/opentelemetry": "^1.0",
+        "open-telemetry/sdk": "^1.0",
+        "open-telemetry/exporter-otlp": "^1.0",
+        "open-telemetry/context-swoole": "^1.0"
+    }
+}
