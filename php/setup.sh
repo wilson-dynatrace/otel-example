@@ -1,18 +1,13 @@
 #!/bin/bash
 
-# Update packages
-sudo apt update
-
-# Install PHP 8.3 and required build tools
-sudo apt install -y software-properties-common python3-launchpadlib python3-apt -y
+# Install latest PHP 8.4 from Ondřej Surý PPA
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
-sudo apt install -y php8.3 php8.3-cli php8.3-dev php8.3-common \
-    php8.3-curl php8.3-mbstring php8.3-xml php8.3-zip \
-    gcc make autoconf
+sudo apt install php8.4 php8.4-cli php8.4-dev php8.4-common ...
 
-# Install Swoole via PECL (latest version compatible with PHP 8.3)
-sudo pecl install swoole
+# Install latest Swoole via PECL
+sudo pecl install swoole  # Installs the latest (6.x+)
+# or for OpenSwoole: sudo pecl install openswoole
 
 # Enable the extension
 echo "extension=swoole.so" | sudo tee /etc/php/8.3/mods-available/swoole.ini
