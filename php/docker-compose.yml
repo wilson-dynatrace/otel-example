@@ -5,19 +5,15 @@ networks:
     external: true
 
 services:
-  php-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  app:
+    build: .
+    ports:
+      - "9501:9501"
     networks:
       - opentelemetry
     environment:
-      - AUTORELOAD_PROGRAMS="swoole"
-      - AUTORELOAD_ANY_FILES=0
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
-      - OTEL_SERVICE_NAME=my-php-app
-      - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=docker      
-    ports:
-      - 8000:9501
-    volumes:
-      - ./www:/var/www
+      OTEL_SERVICE_NAME: swoole-demo
+      AUTORELOAD_PROGRAMS: "swoole"
+      AUTORELOAD_ANY_FILES: 0
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_RESOURCE_ATTRIBUTES: deployment.environment=docker
