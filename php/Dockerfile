@@ -1,32 +1,16 @@
-# Dockerfile
-FROM phpswoole/swoole:latest
+FROM phpswoole/swoole:5.0-php8.3-alpine
 
-# Install build tools, protobuf, unzip, git, curl
-RUN apt-get update && apt-get install -y \
-   gcc \
-   make \
-   autoconf \
-   libprotobuf-dev \
-   protobuf-compiler \
-   unzip \
-   git \
-   curl \
-   && apt-get clean \
-   && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get install -y \
+#   gcc
+# RUN composer install
 
-# Install Composer globally
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+WORKDIR /var/www
 
-# Install PHP extensions via PECL
-RUN pecl install opentelemetry \
-   && pecl install protobuf \
-   && docker-php-ext-enable opentelemetry protobuf
+COPY . /var/www
 
-# COPY ./www/ /var/www/
+RUN composer install --no-dev --optimize-autoloader
 
-#RUN curl -sSfL https://github.com/open-telemetry/opentelemetry-php-instrumentation/releases/download/v1.0.5/opentelemetry-php-instrumentation-installer.sh | bash
-#RUN ( curl -sSLf https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - || echo 'return 1' ) | \
-#      sh -s gd xdebug
+CMD ["php", "server.php"]
       
 ENV OTEL_PHP_AUTOLOAD_ENABLED=true \
     OTEL_TRACES_EXPORTER=otlp \
