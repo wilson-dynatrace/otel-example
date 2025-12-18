@@ -1,4 +1,4 @@
-FROM phpswoole/swoole:5.0-php8.3-alpine
+FROM phpswoole/swoole:6-php8.4-alpine  # Latest Swoole 6.x on PHP 8.4 (alpine is lightweight)
 
 # RUN apt-get update && apt-get install -y \
 #   gcc
