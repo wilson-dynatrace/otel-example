@@ -20,3 +20,7 @@ Commands to verify versions:
 <code>docker run --rm phpswoole/swoole:latest "php --ri swoole"</code><br>
 <code>docker run --rm phpswoole/swoole:latest "php --ri opentelemetry"</code><br>
 <code>docker run --rm phpswoole/swoole:latest "composer --version"</code><br>
+
+Note for PHP/Swoole and OpenTelemetry
+- Auto-instrumentation is available and easy for traditional PHP apps.
+- With Swoole: it is not reliably supported — use manual instrumentation instead for accurate, complete tracing.
