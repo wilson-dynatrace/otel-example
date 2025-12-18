@@ -1,3 +1,8 @@
+Setup:
+
+Make sure a local network named OpenTelemetry is available, e.g. by start the Dynatrace Opentelemetry collector.
+
+
 Commands:
 
 <code>docker-compose -f "docker-compose.yml" up --build --force-recreate -d</code><br>
