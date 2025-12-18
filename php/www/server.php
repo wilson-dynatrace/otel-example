@@ -1,17 +1,16 @@
-#!/usr/bin/env php
 <?php
+    $serv = new swoole_server("0.0.0.0", 9502);
+    $serv->on('connect', function ($serv, $fd) {
+        echo "Client:Connect.\n";
+    });
 
-declare(strict_types=1);
+    $serv->on('receive', function ($serv, $fd, $from_id, $data) {
+        $serv->send($fd, 'Swoole: '.$data);
+    });
 
-$http = new Swoole\Http\Server("0.0.0.0", 9501);
-$http->on(
-    "request",
-    function (Swoole\Http\Request $request, Swoole\Http\Response $response) {
-        $response->end(
-            <<<EOT
-                Hello, world!
-            EOT
-        );
-    }
-);
-$http->start();
+    $serv->on('close', function ($serv, $fd) {
+        echo "Client: Close.\n";
+    });
+
+    $serv->start();
+?>
