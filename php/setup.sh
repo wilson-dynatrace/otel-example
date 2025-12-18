@@ -4,7 +4,7 @@
 sudo apt update
 
 # Install PHP 8.3 and required build tools
-sudo apt install -y software-properties-common
+sudo apt install -y software-properties-common python3-launchpadlib python3-apt -y
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
 sudo apt install -y php8.3 php8.3-cli php8.3-dev php8.3-common \
